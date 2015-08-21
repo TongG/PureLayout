@@ -2,7 +2,7 @@
 //  PureLayoutRemovalTests.m
 //  PureLayout Tests
 //
-//  Copyright (c) 2014 Tyler Fox
+//  Copyright (c) 2014-2015 Tyler Fox
 //  https://github.com/smileyborg/PureLayout
 //
 
@@ -41,15 +41,10 @@
     [self.viewA.superview.constraints[0] autoRemove];
     NSUInteger newConstraintsCount = [self.viewA.superview.constraints count];
     XCTAssert(constraintsCount - newConstraintsCount == 1, @"viewA's superview should have one less constraint on it.");
-    
-    [self.viewB removeFromSuperview];
-    [self.viewA addSubview:self.viewB];
-    
-    [self.viewB autoCenterInSuperview];
 }
 
 /**
- Test the +[removeConstraint:] method on UIView.
+ Test the -[autoRemove] method on NSLayoutConstraint.
  Test the case where we're removing a constraint that only applies to one view.
  */
 - (void)testRemoveConstraintFromSingleView
@@ -65,7 +60,7 @@
 }
 
 /**
- Test the +[removeConstraint:] method on UIView.
+ Test the -[autoRemove] method on NSLayoutConstraint.
  Test the case where we're removing a constraint that was added to a view that is not the closest common superview of
  the two views it constrains.
  */
@@ -89,11 +84,11 @@
 }
 
 /**
- Test the +[removeConstraints:] method on UIView.
+ Test the -[autoRemoveConstraints] method on NSArray.
  */
 - (void)testRemoveConstraints
 {
-    NSArray *constraints = [@[self.viewA, self.viewB, self.viewC, self.viewD] autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeHorizontal withFixedSize:10.0];
+    __NSArray_of(NSLayoutConstraint *) *constraints = [@[self.viewA, self.viewB, self.viewC, self.viewD] autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeHorizontal withFixedSize:10.0];
     
     NSUInteger constraintsCount = [self.containerView.constraints count];
     XCTAssert(constraintsCount > 0, @"containerView should have constraints added to it.");

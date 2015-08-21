@@ -2,7 +2,7 @@
 //  PureLayoutTestBase.h
 //  PureLayout Tests
 //
-//  Copyright (c) 2014 Tyler Fox
+//  Copyright (c) 2014-2015 Tyler Fox
 //  https://github.com/smileyborg/PureLayout
 //
 
@@ -47,7 +47,7 @@ static const CGFloat kContainerViewHeight = 1000.0;
 @interface PureLayoutTestBase : XCTestCase
 
 // An array of viewA, viewB, viewC, and viewD
-@property (nonatomic, readonly) NSArray *viewArray;
+@property (nonatomic, readonly) __NSArray_of(ALView *) *viewArray;
 
 // The indendentation below represents how the view hierarchy is set up
 @property (nonatomic, strong) ALView *containerView;

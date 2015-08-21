@@ -2,7 +2,7 @@
 //  PureLayoutTestBase.m
 //  PureLayout Tests
 //
-//  Copyright (c) 2014 Tyler Fox
+//  Copyright (c) 2014-2015 Tyler Fox
 //  https://github.com/smileyborg/PureLayout
 //
 
@@ -10,7 +10,7 @@
 
 @implementation PureLayoutTestBase
 
-- (NSArray *)viewArray
+- (__NSArray_of(ALView *) *)viewArray
 {
     return @[self.viewA, self.viewB, self.viewC, self.viewD];
 }

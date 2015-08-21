@@ -2,7 +2,7 @@
 //  ALiOSDemo8ViewController.m
 //  PureLayout Example-iOS
 //
-//  Copyright (c) 2014 Tyler Fox
+//  Copyright (c) 2014-2015 Tyler Fox
 //  https://github.com/smileyborg/PureLayout
 //
 
@@ -47,7 +47,7 @@
          it will raise an exception, and you will see these identifiers show up next to the constraint in the console.
          */
         
-        [UIView autoSetIdentifier:@"Pin Container View Edges" forConstraints:^{
+        [NSLayoutConstraint autoSetIdentifier:@"Pin Container View Edges" forConstraints:^{
             [self.containerView autoPinToTopLayoutGuideOfViewController:self withInset:10.0];
             [self.containerView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(0.0, 10.0, 10.0, 10.0) excludingEdge:ALEdgeTop];
         }];
@@ -69,12 +69,12 @@
         
         /**
          Now, let's add some 'bad' constraints that conflict with one or more of the 'good' constraints above.
-         Start by uncommenting one of the below constraints, and running the demo. A a constraint exception will be logged
+         Start by uncommenting one of the below constraints, and running the demo. A constraint exception will be logged
          to the console, because one or more views was over-constrained, and therefore one or more constraints had to be broken.
          But because we have provided human-readable identifiers, notice how easy it is to figure out which constraints are
          conflicting, and which constraint shouldn't be there!
          */
-        [UIView autoSetIdentifier:@"Bad Constraints That Break Things" forConstraints:^{
+        [NSLayoutConstraint autoSetIdentifier:@"Bad Constraints That Break Things" forConstraints:^{
 //            [self.redView autoAlignAxis:ALAxisVertical toSameAxisOfView:self.view withOffset:5.0]; // uncomment me and watch things blow up!
             
 //            [self.redView autoPinEdgeToSuperviewEdge:ALEdgeLeft]; // uncomment me and watch things blow up!
