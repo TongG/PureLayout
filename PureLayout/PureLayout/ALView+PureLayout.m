@@ -87,7 +87,7 @@
  
  @return An array of constraints added.
  */
-- (__NSArray_of(NSLayoutConstraint *) *)autoCenterInSuperview
+- (PL__NSArray_of(NSLayoutConstraint *) *)autoCenterInSuperview
 {
     __NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
     [constraints addObject:[self autoAlignAxisToSuperviewAxis:ALAxisHorizontal]];
@@ -109,14 +109,14 @@
     return [self autoConstrainAttribute:(ALAttribute)axis toAttribute:(ALAttribute)axis ofView:superview];
 }
 
-#if __PureLayout_MinBaseSDK_iOS_8_0
+#if PL__PureLayout_MinBaseSDK_iOS_8_0
 
 /**
  Centers the view in its superview, taking into account the layout margins of both the view and its superview.
  
  @return An array of constraints added.
  */
-- (__NSArray_of(NSLayoutConstraint *) *)autoCenterInSuperviewMargins
+- (PL__NSArray_of(NSLayoutConstraint *) *)autoCenterInSuperviewMargins
 {
     __NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
     [constraints addObject:[self autoAlignAxisToSuperviewMarginAxis:ALAxisHorizontal]];
@@ -139,7 +139,7 @@
     return [self autoConstrainAttribute:(ALAttribute)axis toAttribute:(ALAttribute)marginAxis ofView:superview];
 }
 
-#endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
+#endif /* PL__PureLayout_MinBaseSDK_iOS_8_0 */
 
 
 #pragma mark Pin Edges to Superview
@@ -197,7 +197,7 @@
  
  @return An array of constraints added.
  */
-- (__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewEdges
+- (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewEdges
 {
     return [self autoPinEdgesToSuperviewEdgesWithInsets:ALEdgeInsetsZero];
 }
@@ -209,7 +209,7 @@
  @param insets The insets for this view's edges from its superview's edges.
  @return An array of constraints added.
  */
-- (__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewEdgesWithInsets:(ALEdgeInsets)insets
+- (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewEdgesWithInsets:(ALEdgeInsets)insets
 {
     __NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
     [constraints addObject:[self autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:insets.top]];
@@ -228,7 +228,7 @@
  @param edge The edge of this view to exclude in pinning to its superview; this method will not apply any constraint to it.
  @return An array of constraints added.
  */
-- (__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewEdgesWithInsets:(ALEdgeInsets)insets excludingEdge:(ALEdge)edge
+- (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewEdgesWithInsets:(ALEdgeInsets)insets excludingEdge:(ALEdge)edge
 {
     __NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
     if (edge != ALEdgeTop) {
@@ -246,7 +246,7 @@
     return constraints;
 }
 
-#if __PureLayout_MinBaseSDK_iOS_8_0
+#if PL__PureLayout_MinBaseSDK_iOS_8_0
         
 /**
  Pins the given edge of the view to the corresponding margin of its superview.
@@ -288,7 +288,7 @@
  
  @return An array of constraints added.
  */
-- (__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewMargins
+- (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewMargins
 {
     __NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
     [constraints addObject:[self autoPinEdgeToSuperviewMargin:ALEdgeTop]];
@@ -304,7 +304,7 @@
  @param edge The edge of this view to exclude in pinning to its superview; this method will not apply any constraint to it.
  @return An array of constraints added.
  */
-- (__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewMarginsExcludingEdge:(ALEdge)edge
+- (PL__NSArray_of(NSLayoutConstraint *) *)autoPinEdgesToSuperviewMarginsExcludingEdge:(ALEdge)edge
 {
     __NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
     if (edge != ALEdgeTop) {
@@ -322,7 +322,7 @@
     return constraints;
 }
 
-#endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
+#endif /* PL__PureLayout_MinBaseSDK_iOS_8_0 */
 
 
 #pragma mark Pin Edges
@@ -493,7 +493,7 @@
  @param size The size to set this view's dimensions to.
  @return An array of constraints added.
  */
-- (__NSArray_of(NSLayoutConstraint *) *)autoSetDimensionsToSize:(CGSize)size
+- (PL__NSArray_of(NSLayoutConstraint *) *)autoSetDimensionsToSize:(CGSize)size
 {
     __NSMutableArray_of(NSLayoutConstraint *) *constraints = [NSMutableArray new];
     [constraints addObject:[self autoSetDimension:ALDimensionWidth toSize:size.width]];
@@ -683,7 +683,7 @@
 
 - (NSLayoutConstraint *)autoPinToTopLayoutGuideOfViewController:(UIViewController *)viewController withInset:(CGFloat)inset relation:(NSLayoutRelation)relation
 {
-    if (__PureLayout_MinSysVer_iOS_7_0) {
+    if (PL__PureLayout_MinSysVer_iOS_7_0) {
         self.translatesAutoresizingMaskIntoConstraints = NO;
         NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTop relatedBy:relation toItem:viewController.topLayoutGuide attribute:NSLayoutAttributeBottom multiplier:1.0 constant:inset];
         [viewController.view al_addConstraint:constraint]; // Can't use autoInstall because the layout guide is not a view
@@ -717,7 +717,7 @@
     } else if (relation == NSLayoutRelationGreaterThanOrEqual) {
         relation = NSLayoutRelationLessThanOrEqual;
     }
-    if (__PureLayout_MinSysVer_iOS_7_0) {
+    if (PL__PureLayout_MinSysVer_iOS_7_0) {
         self.translatesAutoresizingMaskIntoConstraints = NO;
         NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeBottom relatedBy:relation toItem:viewController.bottomLayoutGuide attribute:NSLayoutAttributeTop multiplier:1.0 constant:inset];
         [viewController.view al_addConstraint:constraint]; // Can't use autoInstall because the layout guide is not a view
@@ -802,13 +802,13 @@
             NSAssert(axis != ALAxisVertical, @"Cannot align views that are distributed vertically with ALAttributeBaseline.");
             constraint = [self autoAlignAxis:ALAxisBaseline toSameAxisOfView:otherView];
             break;
-#if __PureLayout_MinBaseSDK_iOS_8_0
+#if PL__PureLayout_MinBaseSDK_iOS_8_0
         case ALAttributeFirstBaseline:
-            NSAssert(__PureLayout_MinSysVer_iOS_8_0, @"ALAttributeFirstBaseline is only supported on iOS 8.0 or higher.");
+            NSAssert(PL__PureLayout_MinSysVer_iOS_8_0, @"ALAttributeFirstBaseline is only supported on iOS 8.0 or higher.");
             NSAssert(axis != ALAxisVertical, @"Cannot align views that are distributed vertically with ALAttributeFirstBaseline.");
             constraint = [self autoAlignAxis:ALAxisFirstBaseline toSameAxisOfView:otherView];
             break;
-#endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
+#endif /* PL__PureLayout_MinBaseSDK_iOS_8_0 */
         case ALAttributeTop:
             NSAssert(axis != ALAxisVertical, @"Cannot align views that are distributed vertically with ALAttributeTop.");
             constraint = [self autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:otherView];
@@ -837,7 +837,7 @@
         // All of the below attributes are invalid as alignment options. Listing them explicitly (even though they just fall through to the default case) to avoid an incomplete switch statement warning from the compiler.
         case ALAttributeWidth:
         case ALAttributeHeight:
-#if __PureLayout_MinBaseSDK_iOS_8_0
+#if PL__PureLayout_MinBaseSDK_iOS_8_0
         case ALAttributeMarginLeft:
         case ALAttributeMarginRight:
         case ALAttributeMarginTop:
@@ -846,7 +846,7 @@
         case ALAttributeMarginTrailing:
         case ALAttributeMarginAxisVertical:
         case ALAttributeMarginAxisHorizontal:
-#endif /* __PureLayout_MinBaseSDK_iOS_8_0 */
+#endif /* PL__PureLayout_MinBaseSDK_iOS_8_0 */
         default:
             NSAssert(nil, @"Unsupported attribute for alignment.");
             break;
